@@ -1,0 +1,742 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Maison-Clarum — Mise en scène d’exception</title>
+  <meta name="description" content="Une mise en scène d’exception pour vos créations. Objet de présentation premium pour vitrines et espaces haut de gamme." />
+
+  <!--
+    Landing page inspirée d'un code esthétique "luxe minimal" (noir / blanc, typographie élégante, grands visuels, espace).
+    IMPORTANT :
+    - Remplace les images via les variables CSS --hero et les <img data-src>.
+    - Ce fichier est autonome (sans dépendances). Ouvre-le dans un navigateur.
+  -->
+
+  <style>
+    :root{
+      --bg:#050506;
+      --fg:#f7f7f5;
+      --muted: rgba(247,247,245,.72);
+      --line: rgba(247,247,245,.12);
+      --accent: rgba(247,247,245,.92);
+      --gold: #d8c9a6; /* discret */
+
+      /* Remplace par ton visuel hero (URL absolue ou relative) */
+      --hero: url('hero.jpg');
+
+      --max: 1180px;
+      --radius: 22px;
+      --shadow: 0 26px 90px rgba(0,0,0,.55);
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      color:var(--fg);
+      background: var(--bg);
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      -webkit-font-smoothing: antialiased;
+      text-rendering: geometricPrecision;
+      letter-spacing: .15px;
+    }
+
+    /* Typography */
+    .serif{font-family: ui-serif, Georgia, "Times New Roman", Times, serif;}
+    h1,h2,h3{margin:0}
+
+    a{color:inherit; text-decoration:none}
+
+    /* Top nav */
+    header{
+      position: fixed;
+      top:0; left:0; right:0;
+      z-index: 50;
+      background: linear-gradient(180deg, rgba(5,5,6,.82), rgba(5,5,6,.15) 70%, rgba(5,5,6,0));
+      backdrop-filter: blur(10px);
+    }
+
+    .nav{
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 18px 20px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap: 18px;
+      border-bottom: 1px solid rgba(247,247,245,.08);
+    }
+
+    .brand{
+      display:flex;
+      align-items:center;
+      gap: 12px;
+      letter-spacing: 2.8px;
+      text-transform: uppercase;
+      font-weight: 600;
+      font-size: 12px;
+      white-space: nowrap;
+    }
+
+    .brand .dot{
+      width: 9px; height: 9px;
+      border-radius: 50%;
+      background: var(--gold);
+      box-shadow: 0 0 0 6px rgba(216,201,166,.10);
+    }
+
+    .navlinks{
+      display:flex;
+      align-items:center;
+      gap: 18px;
+      font-size: 12px;
+      letter-spacing: 1.8px;
+      text-transform: uppercase;
+      color: rgba(247,247,245,.78);
+    }
+
+    .navlinks a{padding: 10px 10px; border-radius: 999px;}
+    .navlinks a:hover{background: rgba(247,247,245,.06); color: var(--fg);}
+
+    .cta{
+      border: 1px solid rgba(247,247,245,.24);
+      padding: 10px 14px;
+      border-radius: 999px;
+      font-size: 12px;
+      letter-spacing: 1.6px;
+      text-transform: uppercase;
+      color: rgba(247,247,245,.92);
+      background: rgba(247,247,245,.04);
+      transition: transform .15s ease, background .15s ease, border-color .15s ease;
+      white-space: nowrap;
+    }
+    .cta:hover{transform: translateY(-1px); background: rgba(247,247,245,.07); border-color: rgba(247,247,245,.36)}
+
+    /* Layout */
+    main{padding-top: 86px;}
+    .wrap{max-width: var(--max); margin: 0 auto; padding: 0 20px;}
+
+    /* Hero */
+/* .hero {
+  position: relative;
+  min-height: 100vh;     
+  max-height: 880px;  
+  overflow: hidden;
+}
+
+.heroMedia {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(5, 5, 6, 0.55),
+    rgba(5, 5, 6, 0.75) 60%,
+    rgba(5, 5, 6, 0.92) 100%
+  );
+} */
+
+
+.hero {
+  position: relative;
+  min-height: 100vh;
+  max-height: 900px;
+  overflow: hidden;
+  background-color: #f5f4f2; /* fond clair luxe */
+}
+
+/* Conteneur vidéo */
+.heroMedia {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+
+/* Vidéo */
+.heroVideo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;      /* 🔑 comme une image hero */
+  object-position: center;
+}
+
+
+.heroMedia img {
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;          /* 🔑 remplissage élégant */
+  object-position: 50% 45%;   /* 🔑 centre visuel ajusté */
+
+  filter: saturate(1.02) contrast(1.02);
+}
+
+
+
+    /* .heroMedia::after{
+      content:"";
+      position:absolute;
+      inset:0;
+      background: radial-gradient(1000px 520px at 70% 15%, rgba(216,201,166,.16), rgba(0,0,0,0) 55%);
+      pointer-events:none;
+    } */
+
+    .heroMedia::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+background: linear-gradient(
+  180deg,
+  rgba(0,0,0,0.0),
+  rgba(0,0,0,0.25)
+);
+
+}
+
+/* Contenu texte */
+.heroContent {
+  position: relative;
+  z-index: 2;
+  max-width: 900px;
+  padding: 6rem 4rem;
+  color: #111;
+}
+
+.heroContent h1 {
+  font-size: clamp(2.4rem, 4vw, 4rem);
+  line-height: 1.1;
+  margin-bottom: 1.5rem;
+}
+
+.heroContent p {
+  font-size: 1.1rem;
+  max-width: 520px;
+  opacity: 0.9;
+}
+
+    .heroInner{
+      position:relative;
+      z-index:2;
+      display:grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap: 34px;
+      align-items:end;
+    }
+
+    .kicker{
+      display:inline-flex;
+      align-items:center;
+      gap: 12px;
+      font-size: 12px;
+      letter-spacing: 2.8px;
+      text-transform: uppercase;
+      color: rgba(247,247,245,.78);
+      margin-bottom: 18px;
+    }
+
+    .kicker::before{
+      content:"";
+      width: 34px;
+      height: 1px;
+      background: rgba(216,201,166,.75);
+      display:inline-block;
+    }
+
+    .heroTitle{
+      color: rgba(247,247,245,.76);
+
+      font-size: clamp(40px, 5.6vw, 76px);
+      line-height: .98;
+      letter-spacing: -0.6px;
+      font-weight: 500;
+      margin-bottom: 18px;
+    }
+
+    .heroLead{
+      max-width: 62ch;
+      font-size: 16.5px;
+      line-height: 1.7;
+      color: rgba(247,247,245,.76);
+      margin: 0 0 24px;
+    }
+
+    .heroActions{display:flex; gap: 12px; flex-wrap:wrap; align-items:center;}
+
+    .ctaSolid{
+      border-color: rgba(216,201,166,.45);
+      background: rgba(216,201,166,.12);
+      color: rgba(247,247,245,.96);
+    }
+
+    .ctaGhost{
+      background: transparent;
+      border-color: rgba(247,247,245,.18);
+    }
+
+    .heroAside{
+      border: 1px solid rgba(247,247,245,.14);
+      border-radius: var(--radius);
+      background: rgba(5,5,6,.38);
+      backdrop-filter: blur(12px);
+      padding: 18px 18px 16px;
+      box-shadow: var(--shadow);
+    }
+
+    .asideTitle{
+      font-size: 12px;
+      letter-spacing: 2.4px;
+      text-transform: uppercase;
+      color: rgba(247,247,245,.78);
+      margin-bottom: 10px;
+    }
+
+    .asideList{margin:0; padding:0; list-style:none;}
+    .asideList li{padding: 10px 0; border-top: 1px solid rgba(247,247,245,.10); color: rgba(247,247,245,.78); font-size: 13px; line-height:1.5;}
+    .asideList li:first-child{border-top:0}
+
+    /* Sections */
+    section{padding: 88px 0; border-top: 1px solid rgba(247,247,245,.08);}
+
+    .sectionHead{display:flex; justify-content:space-between; align-items:end; gap: 26px; margin-bottom: 26px;}
+
+    .h2{
+      font-size: clamp(26px, 3vw, 42px);
+      font-weight: 500;
+      letter-spacing: -0.2px;
+    }
+
+    .sub{
+      color: rgba(247,247,245,.70);
+      line-height: 1.7;
+      max-width: 70ch;
+      margin: 0;
+      font-size: 15.5px;
+    }
+
+    .grid3{display:grid; grid-template-columns: repeat(3, 1fr); gap: 14px;}
+.section-technique {
+  padding: 8rem 0;
+  background-color: #050506; /* fond clair, rassurant */
+}
+
+.section-technique .container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  text-align: center;
+}
+
+.section-technique h2 {
+  font-size: clamp(1.8rem, 3vw, 2.6rem);
+  font-weight: 400;
+  margin-bottom: 4rem;
+
+}
+
+.tech-image{
+background-color: #050506;
+ border-radius: 18px;
+}
+
+.tech-image img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+   border-radius: 18px;
+}
+
+    .card{
+      border: 1px solid rgba(247,247,245,.12);
+      border-radius: 18px;
+      background: rgba(247,247,245,.02);
+      padding: 18px 18px 16px;
+      min-height: 170px;
+    }
+
+    .pill{
+      display:inline-flex;
+      border: 1px solid rgba(247,247,245,.14);
+      border-radius: 999px;
+      padding: 6px 10px;
+      font-size: 11px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: rgba(247,247,245,.72);
+      background: rgba(5,5,6,.35);
+      margin-bottom: 12px;
+    }
+
+    .card h3{font-size: 15px; font-weight: 650; letter-spacing:.2px; margin-bottom: 8px;}
+    .card p{margin:0; color: rgba(247,247,245,.70); line-height:1.6; font-size: 14px;}
+
+    .gallery{
+      display:grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap: 14px;
+      margin-top: 18px;
+    }
+
+    .mock{
+      border: 1px solid rgba(247,247,245,.12);
+      border-radius: var(--radius);
+      overflow:hidden;
+      background: rgba(247,247,245,.02);
+      box-shadow: var(--shadow);
+      position:relative;
+      min-height: 320px;
+    }
+
+    .mock.small{min-height: 220px;}
+
+    .mock img{width:100%; height:100%; object-fit:cover; display:block; filter: contrast(1.02) saturate(1.02);}
+
+    .cap{
+      position:absolute;
+      left: 14px;
+      bottom: 14px;
+      padding: 10px 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(247,247,245,.16);
+      background: rgba(5,5,6,.50);
+      backdrop-filter: blur(10px);
+      color: rgba(247,247,245,.82);
+      font-size: 12px;
+      letter-spacing: 1.6px;
+      text-transform: uppercase;
+    }
+
+    /* Contact */
+    .panel{
+      border: 1px solid rgba(247,247,245,.14);
+      border-radius: var(--radius);
+      background: rgba(247,247,245,.02);
+      padding: 22px;
+      box-shadow: var(--shadow);
+    }
+
+    form{display:grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 16px;}
+    label{display:block; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: rgba(247,247,245,.60); margin-bottom: 8px;}
+    input, textarea{
+      width:100%;
+      border-radius: 16px;
+      border: 1px solid rgba(247,247,245,.14);
+      background: rgba(5,5,6,.55);
+      color: var(--fg);
+      padding: 12px 12px;
+      outline:none;
+    }
+    input:focus, textarea:focus{border-color: rgba(216,201,166,.55)}
+    textarea{grid-column: 1 / -1; min-height: 140px; resize: vertical;}
+    .actions{grid-column: 1 / -1; display:flex; gap: 12px; align-items:center; flex-wrap:wrap; margin-top: 4px;}
+    .fine{font-size: 12px; color: rgba(247,247,245,.58);}
+
+    /* Footer */
+    footer{padding: 26px 0 46px; color: rgba(247,247,245,.54); font-size: 12px; letter-spacing: .6px;}
+    .foot{max-width: var(--max); margin: 0 auto; padding: 0 20px; display:flex; justify-content:space-between; gap: 14px; flex-wrap:wrap; border-top: 1px solid rgba(247,247,245,.08); padding-top: 18px;}
+
+    /* Responsive */
+    @media (max-width: 980px){
+      .heroInner{grid-template-columns: 1fr;}
+      .gallery{grid-template-columns: 1fr;}
+    }
+    @media (max-width: 780px){
+      .navlinks{display:none;}
+      .grid3{grid-template-columns: 1fr;}
+      form{grid-template-columns: 1fr;}
+      section{padding: 72px 0;}
+    }
+    @media (max-width: 768px) {
+  .hero {
+    min-height: 70vh;
+  }
+
+  .heroContent {
+    padding: 4rem 2rem;
+  }
+
+  
+}
+
+
+    /* Reveal */
+    .reveal{opacity:0; transform: translateY(10px); transition: opacity .7s ease, transform .7s ease;}
+    .reveal.show{opacity:1; transform: translateY(0)}
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="nav">
+      <a class="brand" href="#top" aria-label="Accueil">
+        <span class="dot" aria-hidden="true"></span>
+        <span>Maison-Clarum</span>
+      </a>
+
+      <nav class="navlinks" aria-label="Navigation">
+        <!-- <a href="#experience">Expérience</a>
+        <a href="#benefices">Bénéfices</a>
+        <a href="#usages">Usages</a> -->
+        <!-- <a href="#contact">Contact</a> -->
+      </nav>
+
+      <a class="cta" href="#contact">Demander des informations</a>
+    </div>
+  </header>
+
+  <main id="top">
+    <!-- HERO -->
+    <!-- <section class="hero" style="border-top:none; padding-top: 0;">
+<div class="heroMedia" aria-hidden="true">
+  <img src="hero4.png" alt="" />
+</div>
+
+      <div class="wrap heroInner">
+        <div class="reveal">
+          <div class="kicker">Pièce de présentation premium</div>
+          <h1 class="heroTitle serif">Une mise en scène d’exception<br/>pour vos créations</h1>
+          <p class="heroLead">
+            Un objet de vitrine conçu pour sublimer une pièce unique, créer un impact visuel immédiat et transformer la perception dès le premier regard.
+          </p>
+          <div class="heroActions">
+            <a class="cta ctaSolid" href="#contact">Demander des informations</a>
+            <a class="cta ctaGhost" href="#usages">Voir des mises en scène</a>
+          </div>
+          <p class="fine" style="margin-top:14px;">Accès réservé — présentation confidentielle.</p>
+        </div> -->
+
+        <!-- <aside class="heroAside reveal">
+          <div class="asideTitle">Ce que vous achetez</div>
+          <ul class="asideList">
+            <li>Une expérience visuelle (effet immédiat en vitrine)</li>
+            <li>Une valeur perçue renforcée (plus rare, plus précieux)</li>
+            <li>Une différenciation mémorisable (point d’arrêt)</li>
+          </ul>
+        </aside> -->
+      <!-- </div>
+    </section> -->
+
+
+<section class="hero">
+  <div class="heroMedia">
+    <video
+      class="heroVideo"
+      autoplay
+      muted
+      loop
+      playsinline
+      preload="auto"
+    >
+      <source src="videos/rotate.mp4" type="video/mp4" />
+      <!-- Fallback image si la vidéo ne charge pas -->
+    </video>
+  </div>
+
+     <div class="heroContent">
+        <div class="reveal">
+          <!-- <div class="kicker">PRESENTATION EN APESANTEUR</div> -->
+          <h1 class="heroTitle serif">Une mise en scène d’exception<br/>pour vos créations</h1>
+          <p class="heroLead">
+            Un objet de vitrine conçu pour sublimer une pièce unique, créer un impact visuel immédiat et transformer la perception dès le premier regard.
+          </p>
+          <div class="heroActions">
+            <a class="cta ctaSolid" href="#contact">Demander des informations</a>
+
+          </div>
+          <p class="fine" style="margin-top:14px;">Accès réservé — présentation confidentielle.</p>
+        </div>
+</section>
+
+
+
+    <!-- EXPERIENCE -->
+    <section id="experience">
+      <div class="wrap">
+        <div class="sectionHead">
+          <div>
+            <div class="kicker">L’expérience</div>
+            <h2 class="h2 serif">Plus qu’un support, une présence</h2>
+          </div>
+          <p class="sub">
+            Cette pièce a été pensée pour provoquer une émotion et sublimer l’unicité d’une création. En vitrine, l’effet est instantané : le regard s’arrête, la pièce gagne en aura.
+          </p>
+        </div>
+
+        <div class="grid3">
+          <div class="card reveal">
+            <div class="pill">Impact</div>
+            <h3>Effet « waouh » immédiat</h3>
+            <p>Une mise en scène qui capte l’attention en quelques secondes, sans explication technique.</p>
+          </div>
+          <div class="card reveal">
+            <div class="pill">Rareté</div>
+            <h3>Plus rare, plus précieux</h3>
+            <p>La présentation confère une dimension presque artistique à la pièce exposée.</p>
+          </div>
+          <div class="card reveal">
+            <div class="pill">Signature</div>
+            <h3>Différenciation nette</h3>
+            <p>Dans une rue concurrentielle, la vitrine devient mémorisable et attire physiquement.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- BENEFITS -->
+    <section id="benefices">
+      <div class="wrap">
+        <div class="sectionHead">
+          <div>
+            <div class="kicker">Bénéfices</div>
+            <h2 class="h2 serif">Une vitrine qui se retient</h2>
+          </div>
+          <p class="sub">
+            Une mise en scène d’exception renforce la valeur perçue d’une pièce unique et soutient naturellement un positionnement premium — sans discours commercial supplémentaire.
+          </p>
+        </div>
+
+        <div class="grid3">
+          <div class="card reveal">
+            <div class="pill">Perception</div>
+            <h3>Valeur perçue renforcée</h3>
+            <p>Un objet sous cloche qui crée l’exception : la pièce paraît plus désirable, plus rare, plus « art ».</p>
+          </div>
+          <div class="card reveal">
+            <div class="pill">Conversion</div>
+            <h3>Le regard devient une visite</h3>
+            <p>Une vitrine mémorable suscite la curiosité et invite à entrer — là où une vitrine classique est oubliée.</p>
+          </div>
+          <div class="card reveal">
+            <div class="pill">Image</div>
+            <h3>Signature d’atelier</h3>
+            <p>Une présence qui élève l’identité du lieu et donne un langage visuel premium à vos créations.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- USAGES / MOCKS -->
+    <section id="usages">
+      <div class="wrap">
+        <div class="sectionHead">
+          <div>
+            <div class="kicker">Usages</div>
+            <h2 class="h2 serif">Pensé pour les vitrines de fleuristes et lieux haut de gamme.</h2>
+          </div>
+          <!-- <p class="sub">
+            Remplace les images ci-dessous par tes 3 mocks IA (fleur / pâtisserie / lobby). Garde un style sobre, contraste doux, lumière cinéma.
+          </p> -->
+        </div>
+
+        <div class="gallery">
+          <div class="mock reveal">
+            <!-- Remplace src par ton mock IA principal -->
+            <img src="images/vitrine.png" alt="Vitrine — pièce maîtresse" onerror="this.style.display='none'" />
+            <div class="cap">Vitrine — Pièce maîtresse</div>
+          </div>
+
+          <div style="display:grid; gap:14px;object-fit: fill;">
+            <div class="mock small reveal">
+              <img src="images/details.png" alt="Événement — série limitée" onerror="this.style.display='none'" />
+              <div class="cap">Finition — Haute précision</div>
+            </div>
+            <div class="mock small reveal">
+              <img src="images/pic1.png" alt="Hall — accueil d’exception" onerror="this.style.display='none'" />
+              <div class="cap">Hall — Accueil d’exception</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- <p class="fine" style="margin-top: 16px;">
+          Conseil : exporte tes visuels en JPG 1600px de large, qualité 80–85%.
+        </p> -->
+      </div>
+    </section>
+
+    <section class="section-technique">
+  <div class="container">
+    <!-- <h2 class="heroTitle serif">Un fonctionnement simple et sécurisé</h2> -->
+        <h2 class="h2 serif">Un fonctionnement simple et sécurisé</h2>
+
+    <div class="tech-image" >
+      <img
+        src="images/instructions.png"
+        alt="Fonctionnement simple et sécurisé de la cloche à lévitation"
+      />
+    </div>
+  </div>
+</section>
+
+    <!-- CONTACT -->
+    <section id="contact">
+      <div class="wrap">
+               <div class="kicker">Présenté auprès d’ateliers et lieux haut de gamme.</div>
+        <div class="panel reveal">
+          <!-- <div class="kicker">Contact</div> -->
+          <h2 class="h2 serif" style="margin-top:10px;">Demander des informations</h2>
+          <p class="sub" style="margin-top:10px;">
+            Laissez vos coordonnées et quelques lignes sur votre univers. Nous revenons vers vous avec une présentation synthétique.
+          </p>
+
+          <form
+  action="https://formspree.io/f/xaqnjjgv"
+  method="POST"
+>
+            <div>
+              <label for="prenom">Prénom</label>
+              <input id="prenom" name="prenom" autocomplete="given-name" placeholder="Prénom" required />
+            </div>
+            <div>
+              <label for="nom">Nom</label>
+              <input id="nom" name="nom" autocomplete="family-name" placeholder="Nom" required />
+            </div>
+            <div>
+              <label for="structure">Atelier / Maison</label>
+              <input id="structure" name="structure" placeholder="Nom de l’atelier" required />
+            </div>
+            <div>
+              <label for="email">Email</label>
+              <input id="email" name="email" type="email" autocomplete="email" placeholder="email@exemple.com" required />
+            </div>
+            <!-- <div>
+              <label for="tel">Téléphone (optionnel)</label>
+              <input id="tel" name="tel" autocomplete="tel" placeholder="+33 ..." />
+            </div>
+            <div>
+              <label for="secteur">Secteur</label>
+              <input id="secteur" name="secteur" placeholder="Fleuriste / Pâtisserie / Hôtel" />
+            </div> -->
+            <div>
+              <label for="message">Message</label>
+              <textarea id="message" name="message" placeholder="Quelques mots sur votre univers, votre vitrine, vos attentes..."></textarea>
+            </div>
+
+            <div class="actions">
+              <button class="cta ctaSolid" type="submit">Envoyer</button>
+              <!-- <span class="fine">Présentation confidentielle — diffusion limitée.</span> -->
+            </div>
+          </form>
+
+          <!-- <p class="fine" style="margin-top: 12px;">
+            Astuce : connecte ce formulaire à Formspree / Basin / Tally (ou l’élément Form de Carrd Pro).
+          </p> -->
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <div class="foot">
+        <div>© Maison-Clarum — Objet de présentation premium</div>
+        <div>Accès réservé — présentation confidentielle</div>
+      </div>
+    </footer>
+  </main>
+
+  <script>
+    const io = new IntersectionObserver((entries)=>{
+      entries.forEach(e=>{ if(e.isIntersecting) e.target.classList.add('show'); });
+    },{threshold:.15});
+    document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+  </script>
+</body>
+</html>
