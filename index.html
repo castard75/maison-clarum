@@ -446,17 +446,67 @@ background-color: #050506;
       form{grid-template-columns: 1fr;}
       section{padding: 72px 0;}
     }
-    @media (max-width: 768px) {
-  .hero {
-    min-height: 70vh;
+
+
+@media (max-width: 768px) {
+
+  .heroVideo {
+    object-fit: cover;
+    background-color: #000; /* ou #f5f4f2 selon ton univers */
   }
 
-  .heroContent {
-    padding: 4rem 2rem;
+  .hero{
+    min-height: 60vh;
   }
+.heroMedia{
 
-  
+  height: 60vh;
 }
+  .heroContent {
+    padding: 3.5rem 1.5rem 2.5rem;
+    text-align: center;
+  }
+
+  .heroTitle {
+    font-size: 2.1rem;
+    line-height: 1.15;
+    margin-bottom: 1.2rem;
+  }
+
+  /* Cache le texte long dans le hero */
+  .heroLead {
+    display: none;
+  }
+
+  .heroActions {
+    justify-content: center;
+  }
+
+  .fine {
+    font-size: 11px;
+    opacity: 0.7;
+  }
+
+  .reveal{
+
+    display: none;
+  }
+  
+  .infos{
+
+    padding: 10px 6px;
+  }
+
+  .sectionHead{
+    display: flex;
+  flex-direction: column;
+  }
+
+  .textAlign{
+    text-align: center;
+  }
+}
+
 
 
     /* Reveal */
@@ -480,7 +530,7 @@ background-color: #050506;
         <!-- <a href="#contact">Contact</a> -->
       </nav>
 
-      <a class="cta" href="#contact">Demander des informations</a>
+      <a class="cta infos" href="#contact">Demander des informations</a>
     </div>
   </header>
 
@@ -534,7 +584,7 @@ background-color: #050506;
 
      <div class="heroContent">
         <div class="reveal">
-          <!-- <div class="kicker">PRESENTATION EN APESANTEUR</div> -->
+    
           <h1 class="heroTitle serif">Une mise en scène d’exception<br/>pour vos créations</h1>
           <p class="heroLead">
             Un objet de vitrine conçu pour sublimer une pièce unique, créer un impact visuel immédiat et transformer la perception dès le premier regard.
@@ -549,6 +599,8 @@ background-color: #050506;
 
 
 
+
+
     <!-- EXPERIENCE -->
     <section id="experience">
       <div class="wrap">
@@ -557,7 +609,7 @@ background-color: #050506;
             <div class="kicker">L’expérience</div>
             <h2 class="h2 serif">Plus qu’un support, une présence</h2>
           </div>
-          <p class="sub">
+          <p class="sub textAlign">
             Cette pièce a été pensée pour provoquer une émotion et sublimer l’unicité d’une création. En vitrine, l’effet est instantané : le regard s’arrête, la pièce gagne en aura.
           </p>
         </div>
@@ -588,9 +640,10 @@ background-color: #050506;
         <div class="sectionHead">
           <div>
             <div class="kicker">Bénéfices</div>
-            <h2 class="h2 serif">Une vitrine qui se retient</h2>
+           <h2 class="h2 serif">Une vitrine que l’on n’oublie pas</h2>
+
           </div>
-          <p class="sub">
+            <p class="sub textAlign">
             Une mise en scène d’exception renforce la valeur perçue d’une pièce unique et soutient naturellement un positionnement premium — sans discours commercial supplémentaire.
           </p>
         </div>
