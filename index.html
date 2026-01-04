@@ -48,6 +48,11 @@
 
     a{color:inherit; text-decoration:none}
 
+    .zoomable {
+  cursor: zoom-in;
+}
+
+    
     /* Top nav */
     header{
       position: fixed;
@@ -406,6 +411,35 @@ background-color: #050506;
       text-transform: uppercase;
     }
 
+/* Lightbox */
+.lightbox {
+  position: fixed;
+  inset: 0;
+  background: rgba(5,5,6,.92);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .3s ease;
+  z-index: 999;
+}
+
+.lightbox.show {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.lightbox img {
+  max-width: 90vw;
+  max-height: 90vh;
+  object-fit: contain;
+  border-radius: 18px;
+  box-shadow: 0 40px 120px rgba(0,0,0,.8);
+  cursor: zoom-out;
+}
+
+
     /* Contact */
     .panel{
       border: 1px solid rgba(247,247,245,.14);
@@ -487,7 +521,7 @@ background-color: #050506;
     opacity: 0.7;
   }
 
-  .reveal{
+  .reveale{
 
     display: none;
   }
@@ -583,7 +617,7 @@ background-color: #050506;
   </div>
 
      <div class="heroContent">
-        <div class="reveal">
+        <div class="reveale">
     
           <h1 class="heroTitle serif">Une mise en scène d’exception<br/>pour vos créations</h1>
           <p class="heroLead">
@@ -682,7 +716,7 @@ background-color: #050506;
         </div>
 
         <div class="gallery">
-          <div class="mock reveal">
+          <div class="mock ">
             <!-- Remplace src par ton mock IA principal -->
             <img src="images/vitrine.png" alt="Vitrine — pièce maîtresse" onerror="this.style.display='none'" />
             <div class="cap">Vitrine — Pièce maîtresse</div>
@@ -711,8 +745,9 @@ background-color: #050506;
     <!-- <h2 class="heroTitle serif">Un fonctionnement simple et sécurisé</h2> -->
         <h2 class="h2 serif">Un fonctionnement simple et sécurisé</h2>
 
-    <div class="tech-image" >
+    <div class="tech-image reveal " >
       <img
+      class="zoomable"
         src="images/instructions.png"
         alt="Fonctionnement simple et sécurisé de la cloche à lévitation"
       />
@@ -784,12 +819,46 @@ background-color: #050506;
       </div>
     </footer>
   </main>
+<div class="lightbox" id="lightbox">
+  <img id="lightbox-img" alt="Agrandissement visuel" />
+</div>
 
   <script>
     const io = new IntersectionObserver((entries)=>{
       entries.forEach(e=>{ if(e.isIntersecting) e.target.classList.add('show'); });
     },{threshold:.15});
     document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+      const lightbox = document.getElementById("lightbox");
+  const lightboxImg = document.getElementById("lightbox-img");
+
+  document.querySelectorAll(".mock img").forEach(img => {
+    img.addEventListener("click", () => {
+      lightboxImg.src = img.src;
+      lightbox.classList.add("show");
+    });
+  });
+
+  document.querySelectorAll(".zoomable").forEach(img => {
+  img.addEventListener("click", () => {
+    lightboxImg.src = img.src;
+    lightbox.classList.add("show");
+  });
+});
+
+
+  lightbox.addEventListener("click", () => {
+    lightbox.classList.remove("show");
+    lightboxImg.src = "";
+  });
+
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") {
+      lightbox.classList.remove("show");
+      lightboxImg.src = "";
+    }
+  });
+
   </script>
 </body>
 </html>
